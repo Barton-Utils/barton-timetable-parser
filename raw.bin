@@ -1,0 +1,47 @@
+<HTML>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <LINK rel="stylesheet" type="text/css" href="../style.css">
+  <style>
+    span.futureLesson{
+      color: #555555;
+      /*  display: none;*/
+    }
+    a.futureLesson{
+      color: #5555aa;
+      /*display: none;*/
+    }
+    span.smallText{
+      font-size: 8pt;
+    }
+    td{text-align: center}
+    /*CSS for mobile display*/
+    table.tt{
+      display: none;
+    }
+    span.studyPeriod{
+      font-style: italic;
+      color: #555555;
+    }
+    span.online{
+      color:red;
+      font-style:italic				
+    }
+  </style>
+
+  <div class="notice">
+    <p>If you believe there are any mistakes, please email MIS@barton.ac.uk.</p>
+    <p>Courses starting at a later date will appear below your main timetable.</p>
+    <p>If you are expecting "Aspire" to appear on your timetable and it does not, please do not worry. This is likely due to a clash, and you will receive the same material as everyone else.</p>
+    <p>Aspire or Q-XTRA : if you wish to remove or change Aspire or a Q-XTRA, then please discuss this with your tutor. MIS cannot do this directly. </p>
+    <p>If you wish to add a Q-XTRA then please do this via Studio by selecting "Add Q-Xtra Course" from the menu. If the course you are looking for does not appear on the list then either it is full or it clashes with your existing timetable.</p>
+    <!--<p>Q-Xtra selection is closed over the weekend. It will re-open on Monday when staff are availalbe to action changes.</p>-->
+  </div>
+  </br>
+
+  <div class="notice">College CAP week</div><table><tr><th colspan=6>Timetable for Tuesday-Thursday<tr><th><th>Period 1<br>08:45 - 11:45<th>Lunch<br>11:45 - 13:00<th>Period 3<br>13:00 - 16:00<tr><th>Tuesday 30/11<td><span title='MAT/COM/AL3/1Y-21'>Computer Science - A Level (2 Yrs)</span><br>Mr     Matthew Arnold<br><a href='../room/map.php?r=N68' target=_blank rel=opener>N68</a><br><td><td><span title='MAT/MAT/AL3/1Y-21'>Maths - A Level (2 Yrs)</span><br>Mrs    Amanda Taylor<br><a href='../room/map.php?r=N73' target=_blank rel=opener>N73</a><br><tr><th>Wednesday 01/12<td><td><td><span title='SCI/PHY/AL3/1Y-21'>Physics - A Level (2 Yrs)</span><br>Mr     Mark McGill<br><a href='../room/map.php?r=S15' target=_blank rel=opener>S15</a><br><tr><th>Thursday 02/12<td><td><td><span title='MAT/FUR/ALL/1Y-21'>Maths (Further) - AS/A Level TT</span><br>Mr     Tristan White<br><a href='../room/map.php?r=N52' target=_blank rel=opener>N52</a><br></table><span class=instructions>And Friday is back to normal...</span><table><tr><th colspan=6>Timetable for Friday<tr><th><th>Period 1<br>08:45 - 10:15<th>Period 2<br>10:30 - 12:00<th>Lunch<br>12:00 - 12:45<th>Period 4<br>12:45 - 14:15<th>Period 5<br>14:30 - 16:00<tr><th>Friday 03/12<td><span title='SCI/PHY/AL3/1Y-21'>Physics - A Level (2 Yrs)</span><br>Mr     Mark McGill<br><a href='../room/map.php?r=S15' target=_blank rel=opener>S15</a><br><td><span title='MAT/MAT/AL3/1Y-21'>Maths - A Level (2 Yrs)</span><br>Mrs    Amanda Taylor<br><a href='../room/map.php?r=N73' target=_blank rel=opener>N73</a><br><td><td><span title='MAT/COM/AL3/1Y-21'>Computer Science - A Level (2 Yrs)</span><br>Mr     Matthew Arnold<br><a href='../room/map.php?r=N68' target=_blank rel=opener>N68</a><br><td></table><P></table><div>
+<a href=timetable.php?id=22559&dt=2021-11-03&r=1795332544 title='Back one month'>Previous month</a>&nbsp;
+<a href=timetable.php?id=22559&dt=2021-11-26&r=1795332544 title='Back one week'>Previous week</a>&nbsp;
+<a href=timetable.php?id=22559&r=1795332544 title='Current week'>Current week</a>&nbsp;
+<a href=timetable.php?id=22559&dt=2021-12-10&r=1795332544 title='Forward one week'>Next week</a>&nbsp;
+<a href=timetable.php?id=22559&dt=2022-01-03&r=1795332544 title='Forward one month'>Next month</a></div></BODY>
+</HTML>
