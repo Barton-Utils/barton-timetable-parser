@@ -2,10 +2,10 @@ require('dotenv').config();
 const { spawn } = require('child_process');
 const fs = require('fs');
 
-const python = spawn('python3', ['fetch.py', `${process.env.USER}`, `${process.env.PASS}`, '2021-12-03']);
+const python = spawn('python3', ['fetch.py', `${process.env.USER}`, `${process.env.PASS}`]);
 
 python.on('close', () => {
-    console.log(formatRaw())
+    formatRaw()
 })
 
 function formatRaw(){
