@@ -2,13 +2,11 @@ require('dotenv').config();
 const { spawn } = require('child_process');
 const fs = require('fs');
 
-// const python = spawn('python3', ['fetch.py', `${process.env.USER}`, `${process.env.PASS}`, '2021-12-03']);
+const python = spawn('python3', ['fetch.py', `${process.env.USER}`, `${process.env.PASS}`, '2021-12-03']);
 
-// python.on('close', () => {
-//     console.log(formatRaw())
-// })
-
-formatRaw();
+python.on('close', () => {
+    console.log(formatRaw())
+})
 
 function formatRaw(){
     const raw = fs.readFileSync('./raw.bin', 'utf8');
@@ -29,19 +27,94 @@ function formatRaw(){
 
     if (timetable.includes('College CAP week')) {
         timetable = timetable.split('</div><table><tr>')[1];
-        
         if (timetable.includes('is back to normal...')) {
             timetable = timetable.split('<span class=instructions>')
             timetable[1] = timetable[1].split(`</span>`)[1]
 
-            // Have to handel each section indervidualy
-            timetable[]
+            // Have to handel each section indervidual
+            timetable[0] = timetable[0].split('<tr><th>')
+            timetable[0].shift();
+            timetable[0].shift();
+
+            timetable[0].forEach(line => dates.push(line.split('<td>').shift()))
+
+            timetable[0].forEach(line => {
+                line = line.replace(/(class=)/gi, 'title=').split('title=')
+                line.shift();
+                line.forEach(entry => {
+                    if (entry.startsWith("''></span>")) {
+                        if (line.indexOf(entry) > -1) {
+                            line.splice(line.indexOf(entry), 1);
+                        }
+                    }
+                })
+                format.push(line)
+            })
+
+
+            format.forEach(line => {
+                for (i = 0; i < line.length; i++) {
+                    if (line[i].startsWith('\'studyPeriod\'')) {
+                        line[i] = line[i].split('\'studyPeriod\'>')[1].split('</span><td>')[0].split('</span>')[0]
+                    } else {
+                        const teacher = line[i].split('</span><br>')[1].split('<br><a')[0].replace(/  +/g, ' ');
+                        const room = line[i].split('rel=opener>')[1].split('</a><td>')[0].replace(/  +/g, ' ').split('</a>')[0];
+                        const subject = line[i].split('</span><br>')[0].split('\'>')[1].replace(/  +/g, ' ');
+                        const code = line[i].split('</span><br>')[0].split('\'>')[0].split('\'')[1].replace(/  +/g, ' ');
+                        line[i] = `${code}|${subject}|${teacher}|${room}`
+                    }
+                }
+                line.unshift(dates[format.indexOf(line)])
+            })
+            
         } else {
-            console.log(timetable)
+            timetable = timetable.split('<tr><th>')
+            timetable.shift();
+            timetable.shift();
+
+            timetable.forEach(line => dates.push(line.split('<td>').shift().split('<td')[0]))
+
+            timetable.forEach(line => {
+                line = line.replace(/(class=)/gi, 'title=').split('title=')
+                line.shift();
+                line.forEach(entry => {
+                    if (entry.startsWith("''></span>")) {
+                        if (line.indexOf(entry) > -1) {
+                            line.splice(line.indexOf(entry), 1);
+                        }
+                    }
+                })
+                format.push(line)
+            })
+
+
+            format.forEach(line => {
+                for (i = 0; i < line.length; i++) {
+                    if (line[i].startsWith('"studyPeriod"')) {
+                        line[i] = line[i].split('"studyPeriod">')[1].split('</span><td>')[0].split('</span>')[0]
+                    } else {
+                        const teacher = line[i].split('</span><br>')[1].split('<br><a')[0].replace(/  +/g, ' ');
+                        const room = line[i].split('rel=opener>')[1].split('</a><td>')[0].replace(/  +/g, ' ').split('</a>')[0];
+                        const subject = line[i].split('</span><br>')[0].split('\'>')[1].replace(/  +/g, ' ');
+                        const code = line[i].split('</span><br>')[0].split('\'>')[0].split('\'')[1].replace(/  +/g, ' ');
+                        line[i] = `${code}|${subject}|${teacher}|${room}`
+                    }
+                }
+                line.unshift(dates[format.indexOf(line)])
+            })
         }
 
-        console.log(timetable)
-        return false;
+        fs.writeFileSync('./timetable.json', JSON.stringify({
+            dates: dates,
+            notice: notice,
+            format: format,
+        }, null, '\t'))
+
+        return {
+            dates,
+            notice,
+            format,
+        };
     } else {
         timetable = timetable.split('<tr><th>')
         timetable.shift();
@@ -90,4 +163,3 @@ function formatRaw(){
         format,
     }
 }
-
